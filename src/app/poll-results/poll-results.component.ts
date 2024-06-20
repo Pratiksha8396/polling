@@ -19,7 +19,6 @@ export class PollResultsComponent implements OnInit {
     this.seggregatedPolls = this.separateById(polls ? JSON.parse(polls) : []);
     this.selectedPoll = 0;
     this.getResults();
-    console.log(this.seggregatedPolls);
   }
 
   separateById(items: Poll[]): { [key: number]: Poll[] } {
