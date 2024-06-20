@@ -1,0 +1,39 @@
+.polls-container {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: rgb(243, 243, 235);
+  background-image: url("../../assets/poll-background.avif");
+  background-size: 100% 100%;
+  background-position: center;
+  .title {
+    text-decoration: underline;
+    padding: 2%;
+  }
+  .polls {
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+    height: 70%;
+    overflow: scroll;
+    justify-content: center;
+    .poll {
+      width: 20%;
+      background: white;
+      margin: 1% 0 0 1%;
+      height: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      .poll-title {
+        font-size: 18px;
+      }
+    }
+  }
+  .action-buttons {
+    .mat-raised-button {
+      margin: 2% 2% 0 0;
+    }
+  }
+}

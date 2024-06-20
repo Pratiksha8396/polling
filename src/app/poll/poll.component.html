@@ -1,0 +1,25 @@
+<div class="polls-container">
+  <div class="title">
+    <img src="../../assets/logo.webp" [height]="100" />
+  </div>
+  <div class="polls">
+    <div
+      class="poll mat-elevation-z2"
+      *ngFor="let poll of polls; let i = index"
+      (click)="answerPoll(i)"
+    >
+      <div>
+        <mat-icon color="primary">poll</mat-icon>
+      </div>
+      <div class="poll-title">Attempt Poll {{ i + 1 }}</div>
+    </div>
+  </div>
+  <div class="action-buttons">
+    <button mat-raised-button color="primary" (click)="createNewPoll()">
+      Create a new Poll
+    </button>
+    <button mat-raised-button color="primary" (click)="viewPollingResults()">
+      View Polling results
+    </button>
+  </div>
+</div>

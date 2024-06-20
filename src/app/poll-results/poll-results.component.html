@@ -1,0 +1,46 @@
+<div class="poll-results-container">
+  <div class="result-section">
+    <div class="side-nav mat-elevation-z2">
+      <ul class="polls">
+        <li
+          *ngFor="let seggregatedPoll of seggregatedPolls; let i = index"
+          [ngClass]="{ 'selected-poll': this.selectedPoll === i }"
+          (click)="selectPoll(i)"
+          class="poll"
+        >
+          <div>Poll {{ i + 1 }}</div>
+        </li>
+      </ul>
+    </div>
+    <div class="results mat-elevation-z2">
+      <div *ngFor="let pollResult of resultPolls" class="result">
+        <div class="width-aligmnent">
+          <h2>{{ pollResult.question }}</h2>
+        </div>
+        <div
+          *ngFor="let option of pollResult.options"
+          class="option"
+          class="width-aligmnent"
+        >
+          <div class="option">
+            {{ option.option }}
+          </div>
+          <mat-progress-bar
+            mode="determinate"
+            value="{{ getPercentage(option.count, pollResult.options) }}"
+          ></mat-progress-bar>
+
+          <div class="count">
+            {{ option.count }}
+          </div>
+        </div>
+        <hr />
+      </div>
+    </div>
+    <div class="action-button">
+      <button mat-button type="button" mat-raised-button (click)="back()">
+        Back
+      </button>
+    </div>
+  </div>
+</div>

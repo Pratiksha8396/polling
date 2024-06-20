@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Answer the Poll</h2>
+<mat-dialog-content>
+  <form [formGroup]="pollForm">
+    <div formArrayName="poll">
+      <ng-container *ngFor="let poll of pollsFormArray.controls; let i = index">
+        <div>{{ poll.get("question")?.value }}</div>
+        <div [formGroupName]="i">
+          <mat-radio-group formControlName="answer">
+            <span
+              class="radio-elements"
+              *ngFor="let option of poll.get('options')?.value"
+            >
+              <mat-radio-button [value]="option" color="primary">
+                {{ option }}
+              </mat-radio-button>
+            </span>
+          </mat-radio-group>
+        </div>
+        <hr />
+      </ng-container>
+    </div>
+  </form>
+  <div></div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+  <button
+    mat-button
+    type="button"
+    color="primary"
+    mat-stroked-button
+    mat-dialog-close
+    [disabled]="pollForm.invalid"
+    (click)="submitResponse()"
+  >
+    Submit Response
+  </button>
+</mat-dialog-actions>

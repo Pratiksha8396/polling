@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>Create a new Poll</h2>
+<mat-dialog-content>
+  <form [formGroup]="pollForm">
+    <div formArrayName="poll">
+      <ng-container *ngFor="let poll of pollsFormArray.controls; let i = index">
+        <div [formGroupName]="i" class="mat-elevation-z2">
+          <mat-form-field class="adjust-field-width">
+            <mat-label>Question</mat-label>
+            <input matInput formControlName="question" />
+          </mat-form-field>
+          <mat-form-field class="adjust-field-width">
+            <mat-label>Type and click enter to add Options</mat-label>
+            <mat-chip-list #chipList aria-label="Fruit selection">
+              <mat-chip
+                *ngFor="
+                  let pollOption of poll.get('options')?.value;
+                  let j = index
+                "
+                [selectable]="true"
+                [removable]="true"
+                (removed)="remove(j)"
+              >
+                {{ pollOption }}
+                <button matChipRemove>
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip>
+              <input
+                placeholder="Add option"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="true"
+                (matChipInputTokenEnd)="add($event, i)"
+              />
+            </mat-chip-list>
+          </mat-form-field>
+        </div>
+        <hr class="divider" />
+      </ng-container>
+    </div>
+  </form>
+  <div></div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+  <button
+    mat-button
+    type="button"
+    color="primary"
+    mat-stroked-button
+    [disabled]="pollForm.invalid"
+    (click)="addQuestion()"
+  >
+    Add question
+  </button>
+  <button
+    mat-button
+    type="button"
+    color="primary"
+    mat-stroked-button
+    mat-dialog-close
+    [disabled]="pollForm.invalid"
+    (click)="createPoll()"
+  >
+    Submit Response
+  </button>
+</mat-dialog-actions>
